@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>NexusShop — Premium Shopping Experience</title>
+    <title>AnimeVerse — Watch Anime Online</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,172 +16,267 @@
 
     <link
         rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    >
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <style>
 
         :root {
-            --bg: #f7f8fc;
+            --bg: #07070d;
+            --bg2: #0d0d16;
+            --card: #12121d;
+            --card2: #171725;
+
             --white: #ffffff;
-            --dark: #111827;
-            --dark2: #1f2937;
-            --muted: #6b7280;
+            --text: #f4f4f5;
+            --muted: #9ca3af;
 
-            --primary: #635bff;
-            --primary-dark: #4f46e5;
-            --secondary: #8b5cf6;
-            --cyan: #06b6d4;
+            --purple: #8b5cf6;
             --pink: #ec4899;
+            --cyan: #06b6d4;
+            --red: #ef4444;
 
-            --success: #10b981;
-            --danger: #ef4444;
+            --border: rgba(255,255,255,.08);
 
-            --radius: 22px;
-
-            --shadow:
-                0 20px 60px rgba(31, 41, 55, .10);
-
-            --container: 1240px;
+            --container: 1280px;
         }
+
 
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
+
 
         html {
             scroll-behavior: smooth;
         }
 
+
         body {
-            font-family: Inter, sans-serif;
             background: var(--bg);
-            color: var(--dark);
+            color: var(--text);
+
+            font-family: Inter, sans-serif;
+
             overflow-x: hidden;
         }
 
-        img {
-            max-width: 100%;
-            display: block;
+
+        body::before {
+            content: "";
+
+            position: fixed;
+
+            inset: 0;
+
+            pointer-events: none;
+
+            background:
+                radial-gradient(
+                    circle at 15% 20%,
+                    rgba(139,92,246,.08),
+                    transparent 25%
+                ),
+                radial-gradient(
+                    circle at 85% 60%,
+                    rgba(236,72,153,.06),
+                    transparent 25%
+                );
+
+            z-index: -1;
         }
 
-        a {
-            text-decoration: none;
-            color: inherit;
+
+        img {
+            display: block;
+            max-width: 100%;
         }
+
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
 
         button,
         input {
             font-family: inherit;
         }
 
+
         .container {
-            width: min(var(--container), calc(100% - 40px));
+            width: min(
+                var(--container),
+                calc(100% - 40px)
+            );
+
             margin: auto;
         }
 
 
-        /* =====================================================
+        /* ==========================================
            HEADER
-        ===================================================== */
+        ========================================== */
 
         header {
-            position: sticky;
+            position: fixed;
+
             top: 0;
-            z-index: 1000;
+            left: 0;
+            right: 0;
 
-            background: rgba(255,255,255,.86);
-            backdrop-filter: blur(18px);
-
-            border-bottom: 1px solid rgba(0,0,0,.06);
-        }
-
-        .header-inner {
             height: 76px;
 
+            z-index: 1000;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    rgba(7,7,13,.96),
+                    rgba(7,7,13,.70)
+                );
+
+            backdrop-filter: blur(18px);
+
+            border-bottom:
+                1px solid var(--border);
+        }
+
+
+        .header-inner {
+            height: 100%;
+
             display: flex;
+
             align-items: center;
+
             justify-content: space-between;
 
-            gap: 30px;
+            gap: 25px;
         }
+
 
         .logo {
             display: flex;
+
             align-items: center;
+
             gap: 10px;
 
             font-family: Poppins;
+
             font-weight: 800;
-            font-size: 24px;
+
+            font-size: 22px;
         }
+
 
         .logo-icon {
             width: 42px;
             height: 42px;
 
-            border-radius: 14px;
+            border-radius: 13px;
 
             display: grid;
+
             place-items: center;
 
-            color: white;
-
             background:
-                linear-gradient(135deg,
-                    var(--primary),
-                    var(--secondary));
+                linear-gradient(
+                    135deg,
+                    var(--purple),
+                    var(--pink)
+                );
 
             box-shadow:
-                0 10px 25px rgba(99,91,255,.35);
+                0 0 30px
+                rgba(139,92,246,.35);
 
-            transform: rotate(-8deg);
+            transform: rotate(-5deg);
         }
+
 
         .logo span {
-            color: var(--primary);
+            color: var(--pink);
         }
+
 
         nav ul {
-            list-style: none;
-
             display: flex;
+
             align-items: center;
+
             gap: 28px;
+
+            list-style: none;
         }
 
-        nav a {
-            font-size: 14px;
-            font-weight: 600;
 
-            color: #4b5563;
+        nav a {
+            color: #c4c4cc;
+
+            font-size: 14px;
+
+            font-weight: 600;
 
             transition: .25s;
         }
 
-        nav a:hover {
-            color: var(--primary);
+
+        nav a:hover,
+        nav a.active {
+            color: white;
         }
+
+
+        nav a.active::after {
+            content: "";
+
+            display: block;
+
+            width: 20px;
+            height: 2px;
+
+            margin:
+                5px auto 0;
+
+            border-radius: 10px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    var(--purple),
+                    var(--pink)
+                );
+        }
+
 
         .header-actions {
             display: flex;
+
             align-items: center;
-            gap: 10px;
+
+            gap: 9px;
         }
 
+
         .icon-btn {
-            width: 42px;
-            height: 42px;
+            width: 40px;
+            height: 40px;
 
-            border-radius: 13px;
+            border: 1px solid var(--border);
 
-            border: 1px solid #e5e7eb;
+            border-radius: 12px;
 
-            background: white;
+            background:
+                rgba(255,255,255,.04);
+
+            color: #d4d4d8;
 
             display: grid;
+
             place-items: center;
 
             cursor: pointer;
@@ -189,180 +284,250 @@
             transition: .25s;
         }
 
+
         .icon-btn:hover {
-            transform: translateY(-3px);
-            color: var(--primary);
+            color: white;
 
-            box-shadow: 0 8px 20px rgba(0,0,0,.08);
+            background:
+                rgba(139,92,246,.18);
+
+            border-color:
+                rgba(139,92,246,.4);
+
+            transform:
+                translateY(-2px);
         }
 
-        .cart-btn {
-            position: relative;
-        }
 
-        .cart-count {
-            position: absolute;
-
-            top: -5px;
-            right: -5px;
-
-            min-width: 20px;
-            height: 20px;
+        .profile {
+            width: 36px;
+            height: 36px;
 
             border-radius: 50%;
 
-            display: grid;
-            place-items: center;
+            object-fit: cover;
 
-            font-size: 10px;
-            font-weight: 800;
-
-            color: white;
-
-            background: var(--danger);
-
-            border: 2px solid white;
-        }
-
-        .mobile-menu-btn {
-            display: none;
+            border:
+                2px solid
+                rgba(139,92,246,.7);
         }
 
 
-        /* =====================================================
+        /* ==========================================
            HERO
-        ===================================================== */
+        ========================================== */
 
         .hero {
+            min-height: 720px;
+
             position: relative;
 
-            min-height: 620px;
-
             display: flex;
+
             align-items: center;
 
             overflow: hidden;
 
+            padding-top: 76px;
+        }
+
+
+        .hero-bg {
+            position: absolute;
+
+            inset: 0;
+
+            background-image:
+                linear-gradient(
+                    90deg,
+                    #07070d 0%,
+                    rgba(7,7,13,.88) 28%,
+                    rgba(7,7,13,.35) 62%,
+                    rgba(7,7,13,.15) 100%
+                ),
+                linear-gradient(
+                    0deg,
+                    #07070d 0%,
+                    transparent 35%
+                ),
+                url("https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=2000&q=90");
+
+            background-size: cover;
+
+            background-position:
+                center;
+        }
+
+
+        .hero-bg::after {
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
             background:
-                radial-gradient(circle at 80% 20%,
-                    rgba(99,91,255,.28),
-                    transparent 30%),
-
-                radial-gradient(circle at 10% 80%,
-                    rgba(6,182,212,.20),
-                    transparent 30%),
-
-                linear-gradient(135deg,
-                    #0f172a,
-                    #1e1b4b 55%,
-                    #312e81);
-
-            color: white;
+                radial-gradient(
+                    circle at 75% 45%,
+                    rgba(139,92,246,.20),
+                    transparent 30%
+                );
         }
 
-        .hero-grid {
-            display: grid;
-
-            grid-template-columns:
-                1fr 1fr;
-
-            align-items: center;
-
-            gap: 50px;
-        }
 
         .hero-content {
             position: relative;
+
             z-index: 3;
+
+            max-width: 650px;
         }
 
-        .eyebrow {
+
+        .hero-tag {
             display: inline-flex;
 
             align-items: center;
+
             gap: 8px;
 
-            padding: 8px 14px;
+            padding: 7px 12px;
 
             border-radius: 999px;
 
-            background: rgba(255,255,255,.10);
+            background:
+                rgba(139,92,246,.14);
 
-            border: 1px solid rgba(255,255,255,.15);
+            border:
+                1px solid
+                rgba(139,92,246,.35);
 
-            font-size: 12px;
-            font-weight: 700;
+            color: #c4b5fd;
 
-            margin-bottom: 22px;
+            font-size: 11px;
+
+            font-weight: 800;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+
+            margin-bottom: 18px;
         }
 
-        .eyebrow i {
-            color: #fbbf24;
-        }
 
         .hero h1 {
             font-family: Poppins;
 
-            font-size: clamp(42px, 5vw, 72px);
+            font-size:
+                clamp(45px, 6vw, 78px);
 
-            line-height: 1.03;
+            line-height: 1.02;
 
             letter-spacing: -3px;
 
-            margin-bottom: 22px;
+            margin-bottom: 18px;
         }
 
-        .gradient-text {
+
+        .hero h1 span {
             background:
                 linear-gradient(
                     90deg,
-                    #a78bfa,
-                    #22d3ee,
-                    #f0abfc
+                    #c084fc,
+                    #f472b6
                 );
 
             -webkit-background-clip: text;
+
             background-clip: text;
 
             color: transparent;
         }
 
-        .hero-description {
-            max-width: 560px;
 
-            color: #cbd5e1;
+        .anime-meta {
+            display: flex;
 
-            font-size: 17px;
-            line-height: 1.7;
+            align-items: center;
 
-            margin-bottom: 32px;
+            flex-wrap: wrap;
+
+            gap: 12px;
+
+            margin-bottom: 18px;
         }
+
+
+        .anime-meta span {
+            color: #d4d4d8;
+
+            font-size: 13px;
+        }
+
+
+        .rating {
+            color: #fbbf24 !important;
+
+            font-weight: 800;
+        }
+
+
+        .age {
+            padding: 3px 7px;
+
+            border: 1px solid #52525b;
+
+            border-radius: 4px;
+
+            font-size: 10px !important;
+        }
+
+
+        .hero-description {
+            color: #c4c4cc;
+
+            font-size: 15px;
+
+            line-height: 1.75;
+
+            max-width: 580px;
+
+            margin-bottom: 28px;
+        }
+
 
         .hero-buttons {
             display: flex;
-            gap: 14px;
+
+            gap: 12px;
 
             flex-wrap: wrap;
         }
 
+
         .btn {
             border: none;
 
-            padding: 14px 22px;
+            border-radius: 12px;
 
-            border-radius: 14px;
+            padding: 13px 20px;
 
-            font-size: 14px;
-            font-weight: 700;
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            font-size: 13px;
+
+            font-weight: 800;
 
             cursor: pointer;
 
-            display: inline-flex;
-            align-items: center;
-            gap: 9px;
-
             transition: .3s;
         }
+
 
         .btn-primary {
             color: white;
@@ -370,459 +535,163 @@
             background:
                 linear-gradient(
                     135deg,
-                    var(--primary),
-                    var(--secondary)
+                    var(--purple),
+                    var(--pink)
                 );
 
             box-shadow:
-                0 15px 35px rgba(99,91,255,.35);
+                0 12px 35px
+                rgba(139,92,246,.30);
         }
+
 
         .btn-primary:hover {
-            transform: translateY(-4px);
+            transform:
+                translateY(-4px)
+                scale(1.02);
 
             box-shadow:
-                0 20px 45px rgba(99,91,255,.5);
+                0 18px 45px
+                rgba(139,92,246,.45);
         }
 
-        .btn-outline {
+
+        .btn-dark {
             color: white;
 
-            background: rgba(255,255,255,.08);
-
-            border: 1px solid rgba(255,255,255,.20);
-        }
-
-        .btn-outline:hover {
-            background: rgba(255,255,255,.15);
-        }
-
-
-        /* =====================================================
-           3D PRODUCT SHOWCASE
-        ===================================================== */
-
-        .hero-showcase {
-            position: relative;
-
-            height: 500px;
-
-            perspective: 1200px;
-        }
-
-        .glow {
-            position: absolute;
-
-            width: 360px;
-            height: 360px;
-
-            border-radius: 50%;
-
             background:
-                radial-gradient(
-                    circle,
-                    rgba(139,92,246,.55),
-                    transparent 70%
-                );
-
-            filter: blur(10px);
-
-            left: 50%;
-            top: 50%;
-
-            transform:
-                translate(-50%,-50%);
-        }
-
-        .product-3d {
-            position: absolute;
-
-            width: 310px;
-
-            left: 50%;
-            top: 50%;
-
-            transform:
-                translate(-50%,-50%)
-                rotateY(-14deg)
-                rotateX(8deg)
-                rotateZ(-3deg);
-
-            transition:
-                transform .7s cubic-bezier(.2,.8,.2,1);
-
-            animation: floating 5s ease-in-out infinite;
-
-            filter:
-                drop-shadow(
-                    0 35px 35px
-                    rgba(0,0,0,.35)
-                );
-        }
-
-        .product-3d img {
-            width: 100%;
-
-            border-radius: 30px;
-
-            object-fit: cover;
-
-            box-shadow:
-                0 25px 60px rgba(0,0,0,.35);
-        }
-
-        .product-3d:hover {
-            transform:
-                translate(-50%,-50%)
-                rotateY(-28deg)
-                rotateX(12deg)
-                rotateZ(-5deg)
-                scale(1.06);
-        }
-
-        @keyframes floating {
-
-            0%,
-            100% {
-                margin-top: 0;
-            }
-
-            50% {
-                margin-top: -20px;
-            }
-        }
-
-        .floating-card {
-            position: absolute;
-
-            padding: 14px 17px;
-
-            border-radius: 17px;
-
-            background: rgba(255,255,255,.12);
+                rgba(255,255,255,.10);
 
             border:
                 1px solid
-                rgba(255,255,255,.20);
+                rgba(255,255,255,.15);
 
-            backdrop-filter: blur(18px);
-
-            box-shadow:
-                0 20px 40px rgba(0,0,0,.20);
-
-            color: white;
-
-            z-index: 5;
+            backdrop-filter: blur(10px);
         }
 
-        .floating-card small {
-            display: block;
 
-            color: #cbd5e1;
-
-            font-size: 10px;
-
-            margin-bottom: 5px;
+        .btn-dark:hover {
+            background:
+                rgba(255,255,255,.17);
         }
 
-        .floating-card strong {
-            font-size: 18px;
-        }
 
-        .floating-card.one {
-            top: 90px;
-            left: 15px;
-
-            animation: floatOne 4s infinite ease-in-out;
-        }
-
-        .floating-card.two {
-            right: 10px;
-            bottom: 90px;
-
-            animation: floatTwo 4.5s infinite ease-in-out;
-        }
-
-        @keyframes floatOne {
-
-            0%,100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-15px);
-            }
-        }
-
-        @keyframes floatTwo {
-
-            0%,100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(12px);
-            }
-        }
+        /* ==========================================
+           FLOATING 3D ORBS
+        ========================================== */
 
         .orb {
             position: absolute;
 
-            width: 70px;
-            height: 70px;
-
             border-radius: 50%;
 
+            pointer-events: none;
+
+            filter: blur(1px);
+
+            opacity: .75;
+
+            animation:
+                orbFloat 7s
+                ease-in-out
+                infinite;
+        }
+
+
+        .orb-1 {
+            width: 100px;
+            height: 100px;
+
+            right: 12%;
+
+            top: 23%;
+
             background:
-                linear-gradient(
-                    135deg,
-                    #22d3ee,
-                    #6366f1
+                radial-gradient(
+                    circle at 30% 30%,
+                    #f5d0fe,
+                    #8b5cf6 45%,
+                    #312e81
                 );
 
             box-shadow:
-                inset -12px -12px 25px rgba(0,0,0,.25),
-                0 20px 40px rgba(0,0,0,.25);
-
-            animation: orbFloat 6s infinite ease-in-out;
+                inset -20px -20px 30px
+                rgba(0,0,0,.35),
+                0 25px 60px
+                rgba(139,92,246,.25);
         }
 
-        .orb.one {
-            top: 20px;
-            right: 80px;
-        }
 
-        .orb.two {
-            bottom: 40px;
-            left: 40px;
-
+        .orb-2 {
             width: 45px;
             height: 45px;
 
+            right: 28%;
+
+            bottom: 22%;
+
             background:
-                linear-gradient(
-                    135deg,
-                    #f472b6,
-                    #8b5cf6
+                radial-gradient(
+                    circle at 30% 30%,
+                    #67e8f9,
+                    #06b6d4
                 );
+
+            animation-delay:
+                -2s;
         }
+
 
         @keyframes orbFloat {
 
             0%,100% {
-                transform: translateY(0) rotate(0);
+                transform:
+                    translate3d(0,0,0)
+                    rotate(0deg);
             }
 
             50% {
-                transform: translateY(-25px) rotate(180deg);
+                transform:
+                    translate3d(
+                        15px,
+                        -25px,
+                        30px
+                    )
+                    rotate(180deg);
             }
         }
 
 
-        /* =====================================================
-           TRUST BAR
-        ===================================================== */
-
-        .trust-bar {
-            margin-top: -35px;
-
-            position: relative;
-            z-index: 10;
-        }
-
-        .trust-grid {
-            background: white;
-
-            border-radius: 22px;
-
-            box-shadow: var(--shadow);
-
-            padding: 22px 30px;
-
-            display: grid;
-
-            grid-template-columns:
-                repeat(4,1fr);
-
-            gap: 20px;
-        }
-
-        .trust-item {
-            display: flex;
-
-            align-items: center;
-
-            gap: 14px;
-        }
-
-        .trust-icon {
-            width: 45px;
-            height: 45px;
-
-            border-radius: 14px;
-
-            display: grid;
-            place-items: center;
-
-            color: var(--primary);
-
-            background: #eef2ff;
-        }
-
-        .trust-item strong {
-            font-size: 14px;
-        }
-
-        .trust-item small {
-            display: block;
-
-            color: var(--muted);
-
-            margin-top: 3px;
-        }
-
-
-        /* =====================================================
-           SECTIONS
-        ===================================================== */
+        /* ==========================================
+           CONTENT SECTIONS
+        ========================================== */
 
         .section {
-            padding: 90px 0;
+            padding: 65px 0 0;
         }
+
 
         .section-heading {
             display: flex;
 
-            align-items: end;
-
             justify-content: space-between;
 
-            margin-bottom: 35px;
+            align-items: end;
+
+            margin-bottom: 22px;
         }
+
 
         .section-heading h2 {
             font-family: Poppins;
 
-            font-size: 34px;
-
-            letter-spacing: -1px;
-        }
-
-        .section-heading p {
-            color: var(--muted);
-
-            margin-top: 7px;
-        }
-
-        .view-all {
-            color: var(--primary);
-
-            font-weight: 700;
-
-            font-size: 14px;
-        }
-
-
-        /* =====================================================
-           CATEGORIES
-        ===================================================== */
-
-        .categories {
-            display: grid;
-
-            grid-template-columns:
-                repeat(6,1fr);
-
-            gap: 18px;
-        }
-
-        .category-card {
-            position: relative;
-
-            padding: 25px 15px;
-
-            background: white;
-
-            border-radius: 20px;
-
-            text-align: center;
-
-            border: 1px solid #edf0f5;
-
-            cursor: pointer;
-
-            transition: .35s;
-
-            overflow: hidden;
-        }
-
-        .category-card::after {
-            content: "";
-
-            position: absolute;
-
-            width: 100px;
-            height: 100px;
-
-            background:
-                radial-gradient(
-                    circle,
-                    rgba(99,91,255,.12),
-                    transparent 70%
-                );
-
-            right: -30px;
-            bottom: -30px;
-        }
-
-        .category-card:hover {
-            transform:
-                translateY(-9px)
-                rotateX(4deg);
-
-            box-shadow:
-                0 20px 45px rgba(31,41,55,.12);
-
-            border-color:
-                rgba(99,91,255,.20);
-        }
-
-        .category-icon {
-            width: 64px;
-            height: 64px;
-
-            margin: auto auto 15px;
-
-            border-radius: 20px;
-
-            display: grid;
-            place-items: center;
-
             font-size: 25px;
 
-            color: var(--primary);
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #eef2ff,
-                    #f5f3ff
-                );
-
-            transition: .35s;
+            letter-spacing: -.7px;
         }
 
-        .category-card:hover .category-icon {
-            transform:
-                rotateY(180deg)
-                scale(1.1);
-        }
 
-        .category-card h4 {
-            font-size: 14px;
-        }
-
-        .category-card p {
+        .section-heading p {
             color: var(--muted);
 
             font-size: 12px;
@@ -831,764 +700,495 @@
         }
 
 
-        /* =====================================================
-           FILTERS
-        ===================================================== */
+        .view-all {
+            color: #c4b5fd;
 
-        .filters {
-            display: flex;
+            font-size: 12px;
 
-            gap: 10px;
-
-            flex-wrap: wrap;
-
-            margin-bottom: 30px;
-        }
-
-        .filter {
-            border: 1px solid #e5e7eb;
-
-            background: white;
-
-            padding: 9px 16px;
-
-            border-radius: 999px;
-
-            cursor: pointer;
-
-            font-size: 13px;
-
-            font-weight: 600;
-
-            color: #6b7280;
-
-            transition: .25s;
-        }
-
-        .filter.active,
-        .filter:hover {
-            color: white;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    var(--primary),
-                    var(--secondary)
-                );
-
-            border-color: transparent;
+            font-weight: 700;
         }
 
 
-        /* =====================================================
-           PRODUCTS
-        ===================================================== */
+        /* ==========================================
+           ANIME CARDS
+        ========================================== */
 
-        .products {
+        .anime-grid {
             display: grid;
 
             grid-template-columns:
-                repeat(4,1fr);
+                repeat(6,1fr);
 
-            gap: 22px;
+            gap: 15px;
         }
 
-        .product-card {
+
+        .anime-card {
             position: relative;
-
-            background: white;
-
-            border-radius: 24px;
 
             overflow: hidden;
 
-            border: 1px solid #edf0f5;
+            border-radius: 13px;
 
-            transition:
-                transform .4s,
-                box-shadow .4s;
+            background: var(--card);
 
-            transform-style: preserve-3d;
-        }
-
-        .product-card:hover {
-            transform:
-                translateY(-10px)
-                rotateX(2deg);
-
-            box-shadow:
-                0 25px 55px rgba(31,41,55,.14);
-        }
-
-        .product-image {
-            position: relative;
-
-            height: 250px;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #f3f4f6,
-                    #eef2ff
-                );
-
-            display: grid;
-
-            place-items: center;
-
-            overflow: hidden;
-        }
-
-        .product-image::before {
-            content: "";
-
-            position: absolute;
-
-            width: 180px;
-            height: 180px;
-
-            border-radius: 50%;
-
-            background:
-                radial-gradient(
-                    circle,
-                    rgba(99,91,255,.18),
-                    transparent 70%
-                );
-        }
-
-        .product-image img {
-            width: 78%;
-            height: 85%;
-
-            object-fit: contain;
-
-            position: relative;
-
-            z-index: 2;
-
-            transition: .5s;
-
-            filter:
-                drop-shadow(
-                    0 20px 20px
-                    rgba(0,0,0,.16)
-                );
-        }
-
-        .product-card:hover
-        .product-image img {
-            transform:
-                scale(1.1)
-                translateY(-5px)
-                rotate(-2deg);
-        }
-
-        .badge {
-            position: absolute;
-
-            left: 14px;
-            top: 14px;
-
-            z-index: 4;
-
-            padding: 6px 10px;
-
-            border-radius: 999px;
-
-            font-size: 10px;
-
-            font-weight: 800;
-
-            color: white;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    var(--primary),
-                    var(--secondary)
-                );
-        }
-
-        .wishlist {
-            position: absolute;
-
-            right: 14px;
-            top: 14px;
-
-            z-index: 5;
-
-            width: 38px;
-            height: 38px;
-
-            border-radius: 50%;
-
-            border: none;
-
-            background:
-                rgba(255,255,255,.90);
-
-            display: grid;
-            place-items: center;
+            border:
+                1px solid
+                var(--border);
 
             cursor: pointer;
 
-            transition: .25s;
+            transform-style: preserve-3d;
+
+            transition:
+                transform .4s,
+                box-shadow .4s,
+                border-color .4s;
         }
 
-        .wishlist:hover {
-            color: var(--danger);
 
-            transform: scale(1.1);
+        .anime-card:hover {
+            transform:
+                translateY(-8px)
+                rotateX(3deg);
+
+            border-color:
+                rgba(139,92,246,.45);
+
+            box-shadow:
+                0 20px 45px
+                rgba(0,0,0,.35);
         }
 
-        .wishlist.active {
-            color: var(--danger);
+
+        .anime-poster {
+            height: 285px;
+
+            position: relative;
+
+            overflow: hidden;
         }
 
-        .product-info {
-            padding: 20px;
+
+        .anime-poster img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            transition:
+                transform .5s,
+                filter .5s;
         }
 
-        .product-category {
-            color: var(--primary);
 
-            font-size: 11px;
+        .anime-card:hover
+        .anime-poster img {
+            transform:
+                scale(1.08);
 
-            font-weight: 700;
-
-            text-transform: uppercase;
-
-            letter-spacing: .7px;
+            filter:
+                brightness(.75);
         }
 
-        .product-title {
+
+        .poster-overlay {
+            position: absolute;
+
+            inset: 0;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background:
+                rgba(0,0,0,.35);
+
+            opacity: 0;
+
+            transition: .3s;
+        }
+
+
+        .anime-card:hover
+        .poster-overlay {
+            opacity: 1;
+        }
+
+
+        .play-circle {
+            width: 48px;
+            height: 48px;
+
+            border-radius: 50%;
+
+            display: grid;
+
+            place-items: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--purple),
+                    var(--pink)
+                );
+
+            box-shadow:
+                0 10px 35px
+                rgba(139,92,246,.5);
+
+            transform: scale(.7);
+
+            transition: .3s;
+        }
+
+
+        .anime-card:hover
+        .play-circle {
+            transform: scale(1);
+        }
+
+
+        .card-badge {
+            position: absolute;
+
+            top: 9px;
+            left: 9px;
+
+            padding: 4px 7px;
+
+            border-radius: 5px;
+
+            font-size: 9px;
+
+            font-weight: 800;
+
+            background:
+                rgba(0,0,0,.75);
+
+            backdrop-filter:
+                blur(8px);
+        }
+
+
+        .card-badge.hot {
+            color: #fecaca;
+
+            background:
+                rgba(127,29,29,.8);
+        }
+
+
+        .card-badge.new {
+            color: #c4b5fd;
+
+            background:
+                rgba(76,29,149,.8);
+        }
+
+
+        .card-info {
+            padding: 12px;
+        }
+
+
+        .card-info h3 {
             font-family: Poppins;
 
-            font-size: 16px;
-
-            margin: 7px 0;
+            font-size: 13px;
 
             white-space: nowrap;
 
             overflow: hidden;
 
             text-overflow: ellipsis;
+
+            margin-bottom: 6px;
         }
 
-        .rating {
-            color: #f59e0b;
 
-            font-size: 13px;
-        }
-
-        .rating span {
-            color: var(--muted);
-
-            margin-left: 5px;
-        }
-
-        .product-bottom {
+        .card-meta {
             display: flex;
 
             align-items: center;
 
             justify-content: space-between;
 
-            margin-top: 18px;
-        }
+            color: var(--muted);
 
-        .price {
-            font-size: 20px;
-
-            font-weight: 800;
-        }
-
-        .old-price {
-            color: #9ca3af;
-
-            font-size: 11px;
-
-            text-decoration: line-through;
-
-            margin-left: 5px;
-        }
-
-        .add-btn {
-            border: none;
-
-            width: 42px;
-            height: 42px;
-
-            border-radius: 13px;
-
-            color: white;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    var(--primary),
-                    var(--secondary)
-                );
-
-            cursor: pointer;
-
-            transition: .3s;
-        }
-
-        .add-btn:hover {
-            transform: scale(1.1) rotate(-5deg);
-
-            box-shadow:
-                0 10px 25px rgba(99,91,255,.35);
+            font-size: 10px;
         }
 
 
-        /* =====================================================
-           DEAL SECTION
-        ===================================================== */
+        .card-rating {
+            color: #fbbf24;
+        }
 
-        .deal {
-            position: relative;
 
-            overflow: hidden;
+        /* ==========================================
+           CONTINUE WATCHING
+        ========================================== */
 
-            border-radius: 30px;
-
-            min-height: 400px;
-
-            background:
-                linear-gradient(
-                    120deg,
-                    #111827,
-                    #312e81
-                );
-
-            color: white;
-
+        .continue-grid {
             display: grid;
 
             grid-template-columns:
-                1fr 1fr;
+                repeat(4,1fr);
 
-            align-items: center;
-
-            padding: 55px;
+            gap: 17px;
         }
 
-        .deal::before {
-            content: "";
 
-            position: absolute;
-
-            width: 500px;
-            height: 500px;
-
-            border-radius: 50%;
-
+        .continue-card {
             background:
-                radial-gradient(
-                    circle,
-                    rgba(139,92,246,.35),
-                    transparent 70%
-                );
-
-            right: -150px;
-            top: -150px;
-        }
-
-        .deal-content {
-            position: relative;
-
-            z-index: 3;
-        }
-
-        .deal-label {
-            color: #a5b4fc;
-
-            font-weight: 800;
-
-            font-size: 12px;
-
-            text-transform: uppercase;
-
-            letter-spacing: 2px;
-
-            margin-bottom: 15px;
-        }
-
-        .deal h2 {
-            font-family: Poppins;
-
-            font-size: 40px;
-
-            margin-bottom: 10px;
-        }
-
-        .deal p {
-            color: #cbd5e1;
-
-            line-height: 1.6;
-
-            max-width: 500px;
-        }
-
-        .timer {
-            display: flex;
-
-            gap: 10px;
-
-            margin: 25px 0;
-        }
-
-        .time-box {
-            width: 65px;
-            height: 65px;
-
-            border-radius: 16px;
-
-            display: grid;
-            place-items: center;
-
-            background:
-                rgba(255,255,255,.10);
+                var(--card);
 
             border:
                 1px solid
-                rgba(255,255,255,.10);
+                var(--border);
 
-            backdrop-filter: blur(10px);
-        }
+            border-radius: 14px;
 
-        .time-box strong {
-            font-size: 20px;
-        }
-
-        .time-box small {
-            display: block;
-
-            font-size: 9px;
-
-            color: #94a3b8;
-        }
-
-        .deal-product {
-            position: relative;
-
-            z-index: 2;
-
-            display: flex;
-
-            justify-content: center;
-
-            perspective: 900px;
-        }
-
-        .deal-product img {
-            width: 340px;
-
-            filter:
-                drop-shadow(
-                    0 35px 30px
-                    rgba(0,0,0,.45)
-                );
-
-            transform:
-                rotateY(-15deg)
-                rotateZ(-4deg);
-
-            animation:
-                dealFloat 5s
-                infinite ease-in-out;
-        }
-
-        @keyframes dealFloat {
-
-            0%,100% {
-                transform:
-                    translateY(0)
-                    rotateY(-15deg)
-                    rotateZ(-4deg);
-            }
-
-            50% {
-                transform:
-                    translateY(-18px)
-                    rotateY(10deg)
-                    rotateZ(3deg);
-            }
-        }
-
-
-        /* =====================================================
-           FEATURES
-        ===================================================== */
-
-        .features {
-            display: grid;
-
-            grid-template-columns:
-                repeat(3,1fr);
-
-            gap: 20px;
-        }
-
-        .feature {
-            background: white;
-
-            border-radius: 22px;
-
-            padding: 30px;
-
-            border: 1px solid #edf0f5;
+            overflow: hidden;
 
             transition: .3s;
-        }
 
-        .feature:hover {
-            transform: translateY(-7px);
-
-            box-shadow: var(--shadow);
-        }
-
-        .feature-icon {
-            width: 52px;
-            height: 52px;
-
-            border-radius: 16px;
-
-            display: grid;
-            place-items: center;
-
-            color: white;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    var(--primary),
-                    var(--secondary)
-                );
-
-            margin-bottom: 20px;
-        }
-
-        .feature h3 {
-            font-family: Poppins;
-
-            font-size: 18px;
-
-            margin-bottom: 8px;
-        }
-
-        .feature p {
-            color: var(--muted);
-
-            font-size: 14px;
-
-            line-height: 1.7;
+            cursor: pointer;
         }
 
 
-        /* =====================================================
-           REVIEWS
-        ===================================================== */
+        .continue-card:hover {
+            transform:
+                translateY(-6px);
 
-        .reviews {
-            display: grid;
-
-            grid-template-columns:
-                repeat(3,1fr);
-
-            gap: 20px;
+            border-color:
+                rgba(139,92,246,.35);
         }
 
-        .review {
-            background: white;
 
-            border-radius: 22px;
+        .continue-image {
+            height: 150px;
 
-            padding: 25px;
-
-            border: 1px solid #edf0f5;
+            position: relative;
         }
 
-        .review-stars {
-            color: #f59e0b;
 
-            margin-bottom: 15px;
-        }
-
-        .review p {
-            color: #4b5563;
-
-            line-height: 1.7;
-
-            font-size: 14px;
-
-            margin-bottom: 20px;
-        }
-
-        .review-user {
-            display: flex;
-
-            align-items: center;
-
-            gap: 12px;
-        }
-
-        .review-user img {
-            width: 42px;
-            height: 42px;
-
-            border-radius: 50%;
+        .continue-image img {
+            width: 100%;
+            height: 100%;
 
             object-fit: cover;
         }
 
-        .review-user strong {
-            display: block;
 
+        .continue-image::after {
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    transparent 45%,
+                    rgba(0,0,0,.75)
+                );
+        }
+
+
+        .progress {
+            position: absolute;
+
+            bottom: 0;
+            left: 0;
+
+            height: 3px;
+
+            width: 63%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    var(--purple),
+                    var(--pink)
+                );
+
+            z-index: 2;
+        }
+
+
+        .continue-info {
+            padding: 12px;
+        }
+
+
+        .continue-info h3 {
             font-size: 13px;
+
+            margin-bottom: 6px;
         }
 
-        .review-user small {
+
+        .continue-info p {
             color: var(--muted);
+
+            font-size: 10px;
         }
 
 
-        /* =====================================================
-           NEWSLETTER
-        ===================================================== */
+        /* ==========================================
+           GENRES
+        ========================================== */
 
-        .newsletter {
-            position: relative;
+        .genre-grid {
+            display: grid;
 
-            overflow: hidden;
+            grid-template-columns:
+                repeat(8,1fr);
+
+            gap: 10px;
+        }
+
+
+        .genre {
+            padding: 13px 10px;
 
             text-align: center;
 
-            padding: 65px 30px;
+            border-radius: 10px;
 
-            border-radius: 30px;
+            background:
+                var(--card);
 
+            border:
+                1px solid
+                var(--border);
+
+            color: #c4c4cc;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: .25s;
+        }
+
+
+        .genre:hover {
             color: white;
 
             background:
                 linear-gradient(
                     135deg,
-                    #4f46e5,
-                    #7c3aed,
-                    #db2777
+                    rgba(139,92,246,.25),
+                    rgba(236,72,153,.18)
                 );
 
-            box-shadow:
-                0 25px 60px
-                rgba(99,91,255,.25);
+            border-color:
+                rgba(139,92,246,.4);
+
+            transform:
+                translateY(-3px);
         }
 
-        .newsletter::before,
-        .newsletter::after {
-            content: "";
 
-            position: absolute;
+        /* ==========================================
+           FEATURE BANNER
+        ========================================== */
 
-            border-radius: 50%;
+        .feature-banner {
+            min-height: 350px;
 
-            background:
-                rgba(255,255,255,.10);
-        }
+            border-radius: 22px;
 
-        .newsletter::before {
-            width: 300px;
-            height: 300px;
+            overflow: hidden;
 
-            top: -180px;
-            left: -100px;
-        }
-
-        .newsletter::after {
-            width: 250px;
-            height: 250px;
-
-            right: -100px;
-            bottom: -160px;
-        }
-
-        .newsletter-content {
             position: relative;
-            z-index: 2;
-        }
-
-        .newsletter h2 {
-            font-family: Poppins;
-
-            font-size: 32px;
-
-            margin-bottom: 10px;
-        }
-
-        .newsletter p {
-            color: #e0e7ff;
-
-            margin-bottom: 25px;
-        }
-
-        .newsletter-form {
-            max-width: 520px;
-
-            margin: auto;
 
             display: flex;
 
-            background: white;
+            align-items: center;
 
-            border-radius: 15px;
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(10,10,17,.98),
+                    rgba(10,10,17,.75),
+                    rgba(10,10,17,.15)
+                ),
+                url("https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=1800&q=85");
 
-            padding: 5px;
-        }
+            background-size: cover;
 
-        .newsletter-form input {
-            flex: 1;
-
-            border: none;
-
-            outline: none;
-
-            padding: 13px;
-
-            min-width: 0;
-        }
-
-        .newsletter-form button {
-            border: none;
-
-            border-radius: 11px;
-
-            padding: 0 20px;
-
-            color: white;
-
-            background: var(--dark);
-
-            font-weight: 700;
-
-            cursor: pointer;
+            background-position: center;
         }
 
 
-        /* =====================================================
+        .feature-content {
+            position: relative;
+
+            z-index: 2;
+
+            padding: 40px;
+
+            max-width: 560px;
+        }
+
+
+        .feature-content small {
+            color: #c4b5fd;
+
+            font-weight: 800;
+
+            text-transform: uppercase;
+
+            letter-spacing: 2px;
+        }
+
+
+        .feature-content h2 {
+            font-family: Poppins;
+
+            font-size: 38px;
+
+            margin:
+                10px 0 12px;
+        }
+
+
+        .feature-content p {
+            color: #bdbdc6;
+
+            font-size: 13px;
+
+            line-height: 1.7;
+
+            margin-bottom: 20px;
+        }
+
+
+        /* ==========================================
            FOOTER
-        ===================================================== */
+        ========================================== */
 
         footer {
             margin-top: 80px;
 
-            background: #111827;
+            padding:
+                55px 0 25px;
 
-            color: white;
+            background:
+                #050509;
 
-            padding: 65px 0 25px;
+            border-top:
+                1px solid
+                var(--border);
         }
+
 
         .footer-grid {
             display: grid;
@@ -1596,131 +1196,230 @@
             grid-template-columns:
                 2fr 1fr 1fr 1fr;
 
-            gap: 50px;
+            gap: 45px;
         }
+
 
         .footer-brand p {
-            color: #9ca3af;
+            color: var(--muted);
 
-            max-width: 340px;
+            max-width: 350px;
 
-            margin-top: 15px;
+            font-size: 12px;
 
             line-height: 1.7;
+
+            margin-top: 15px;
         }
 
+
         .footer h4 {
-            margin-bottom: 15px;
+            font-size: 13px;
+
+            margin-bottom: 16px;
         }
+
 
         .footer ul {
             list-style: none;
         }
 
+
         .footer li {
             margin-bottom: 10px;
         }
 
-        .footer li a {
-            color: #9ca3af;
 
-            font-size: 13px;
+        .footer li a {
+            color: #777783;
+
+            font-size: 12px;
 
             transition: .2s;
         }
+
 
         .footer li a:hover {
             color: white;
         }
 
+
         .socials {
             display: flex;
 
-            gap: 10px;
+            gap: 8px;
 
             margin-top: 20px;
         }
 
+
         .socials a {
-            width: 38px;
-            height: 38px;
+            width: 35px;
+            height: 35px;
 
-            border-radius: 12px;
-
-            background: #1f2937;
+            border-radius: 10px;
 
             display: grid;
+
             place-items: center;
+
+            background:
+                #15151f;
+
+            color: #aaa;
 
             transition: .25s;
         }
 
-        .socials a:hover {
-            background: var(--primary);
 
-            transform: translateY(-4px);
+        .socials a:hover {
+            color: white;
+
+            background:
+                var(--purple);
+
+            transform:
+                translateY(-3px);
         }
+
 
         .copyright {
-            border-top:
-                1px solid
-                rgba(255,255,255,.08);
-
-            margin-top: 45px;
-
-            padding-top: 20px;
-
             text-align: center;
 
-            color: #6b7280;
+            color: #555562;
 
-            font-size: 12px;
+            font-size: 10px;
+
+            border-top:
+                1px solid
+                var(--border);
+
+            margin-top: 40px;
+
+            padding-top: 20px;
         }
 
 
-        /* =====================================================
+        /* ==========================================
+           SEARCH MODAL
+        ========================================== */
+
+        .search-modal {
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 2000;
+
+            background:
+                rgba(0,0,0,.75);
+
+            backdrop-filter:
+                blur(12px);
+
+            display: none;
+
+            align-items: flex-start;
+
+            justify-content: center;
+
+            padding-top: 130px;
+        }
+
+
+        .search-modal.show {
+            display: flex;
+        }
+
+
+        .search-box {
+            width:
+                min(600px,90%);
+
+            background:
+                #15151f;
+
+            border:
+                1px solid
+                rgba(139,92,246,.3);
+
+            border-radius: 18px;
+
+            padding: 8px;
+
+            box-shadow:
+                0 30px 100px
+                rgba(0,0,0,.5);
+        }
+
+
+        .search-box input {
+            width: 100%;
+
+            background: transparent;
+
+            border: none;
+
+            outline: none;
+
+            color: white;
+
+            font-size: 15px;
+
+            padding: 15px;
+        }
+
+
+        /* ==========================================
            TOAST
-        ===================================================== */
+        ========================================== */
 
         .toast {
             position: fixed;
 
-            right: 25px;
             bottom: 25px;
 
-            z-index: 2000;
+            right: 25px;
 
-            background: #111827;
+            z-index: 3000;
 
-            color: white;
+            background:
+                #18181f;
 
-            padding: 14px 18px;
+            border:
+                1px solid
+                rgba(139,92,246,.35);
 
-            border-radius: 14px;
+            padding: 13px 17px;
+
+            border-radius: 12px;
+
+            font-size: 12px;
 
             box-shadow:
-                0 20px 40px rgba(0,0,0,.2);
+                0 15px 40px
+                rgba(0,0,0,.4);
 
             transform:
-                translateY(120px);
+                translateY(100px);
 
             opacity: 0;
 
             transition: .35s;
-
-            font-size: 13px;
         }
 
+
         .toast.show {
-            transform: translateY(0);
+            transform:
+                translateY(0);
 
             opacity: 1;
         }
 
 
-        /* =====================================================
+        /* ==========================================
            RESPONSIVE
-        ===================================================== */
+        ========================================== */
 
         @media(max-width:1100px) {
 
@@ -1728,33 +1427,17 @@
                 display: none;
             }
 
-            .mobile-menu-btn {
-                display: grid;
-            }
-
-            .hero-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .hero {
-                padding: 80px 0;
-            }
-
-            .hero-showcase {
-                height: 420px;
-            }
-
-            .categories {
+            .anime-grid {
                 grid-template-columns:
-                    repeat(3,1fr);
+                    repeat(4,1fr);
             }
 
-            .products {
+            .genre-grid {
                 grid-template-columns:
-                    repeat(3,1fr);
+                    repeat(4,1fr);
             }
 
-            .trust-grid {
+            .continue-grid {
                 grid-template-columns:
                     repeat(2,1fr);
             }
@@ -1766,154 +1449,96 @@
         }
 
 
-        @media(max-width:750px) {
-
-            .header-actions .account {
-                display: none;
-            }
-
-            .hero h1 {
-                letter-spacing: -2px;
-            }
-
-            .categories {
-                grid-template-columns:
-                    repeat(2,1fr);
-            }
-
-            .products {
-                grid-template-columns:
-                    repeat(2,1fr);
-            }
-
-            .deal {
-                grid-template-columns: 1fr;
-
-                padding: 35px;
-
-                gap: 30px;
-            }
-
-            .features,
-            .reviews {
-                grid-template-columns: 1fr;
-            }
-
-            .section {
-                padding: 65px 0;
-            }
-
-            .section-heading {
-                display: block;
-            }
-
-            .view-all {
-                display: inline-block;
-
-                margin-top: 12px;
-            }
-        }
-
-
-        @media(max-width:520px) {
+        @media(max-width:700px) {
 
             .container {
                 width:
-                    min(
-                        var(--container),
-                        calc(100% - 28px)
-                    );
+                    calc(100% - 28px);
             }
 
-            .logo {
-                font-size: 19px;
+            .hero {
+                min-height: 650px;
             }
 
-            .logo-icon {
-                width: 36px;
-                height: 36px;
+            .hero-bg {
+                background-position:
+                    65% center;
             }
 
             .hero h1 {
-                font-size: 42px;
+                font-size: 46px;
+
+                letter-spacing:
+                    -2px;
             }
 
-            .hero-description {
-                font-size: 14px;
-            }
-
-            .hero-showcase {
-                height: 330px;
-            }
-
-            .product-3d {
-                width: 220px;
-            }
-
-            .floating-card.one {
-                left: 0;
-            }
-
-            .floating-card.two {
-                right: 0;
-            }
-
-            .trust-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .categories {
+            .anime-grid {
                 grid-template-columns:
                     repeat(2,1fr);
             }
 
-            .products {
-                grid-template-columns: 1fr;
+            .anime-poster {
+                height: 245px;
             }
 
-            .product-image {
-                height: 280px;
+            .genre-grid {
+                grid-template-columns:
+                    repeat(3,1fr);
             }
 
-            .deal {
+            .continue-grid {
+                grid-template-columns:
+                    1fr;
+            }
+
+            .feature-banner {
+                min-height: 420px;
+            }
+
+            .feature-content {
                 padding: 25px;
             }
 
-            .deal h2 {
+            .feature-content h2 {
                 font-size: 30px;
             }
 
-            .timer {
-                gap: 6px;
+            .footer-grid {
+                grid-template-columns:
+                    1fr;
+            }
+        }
+
+
+        @media(max-width:450px) {
+
+            .header-actions
+            .hide-mobile {
+                display: none;
             }
 
-            .time-box {
-                width: 58px;
-                height: 58px;
+            .anime-grid {
+                gap: 10px;
             }
 
-            .newsletter-form {
+            .anime-poster {
+                height: 220px;
+            }
+
+            .hero-buttons {
                 flex-direction: column;
 
-                background: transparent;
-
-                gap: 8px;
+                align-items: flex-start;
             }
 
-            .newsletter-form input {
-                border-radius: 11px;
-            }
-
-            .newsletter-form button {
-                height: 45px;
-            }
-
-            .footer-grid {
-                grid-template-columns: 1fr;
+            .genre-grid {
+                grid-template-columns:
+                    repeat(2,1fr);
             }
         }
 
     </style>
+
 </head>
 
 
@@ -1928,13 +1553,16 @@
 
     <div class="container header-inner">
 
+
         <a href="#" class="logo">
 
             <div class="logo-icon">
-                <i class="fa-solid fa-bag-shopping"></i>
+
+                <i class="fa-solid fa-play"></i>
+
             </div>
 
-            Nexus<span>Shop</span>
+            Anime<span>Verse</span>
 
         </a>
 
@@ -1943,29 +1571,33 @@
 
             <ul>
 
-                <li><a href="#">Home</a></li>
-
                 <li>
-                    <a href="#categories">
-                        Categories
+                    <a href="#" class="active">
+                        Home
                     </a>
                 </li>
 
                 <li>
-                    <a href="#products">
-                        Trending
+                    <a href="#popular">
+                        Popular
                     </a>
                 </li>
 
                 <li>
-                    <a href="#deals">
-                        Deals
+                    <a href="#latest">
+                        Latest
                     </a>
                 </li>
 
                 <li>
-                    <a href="#reviews">
-                        Reviews
+                    <a href="#genres">
+                        Genres
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#watchlist">
+                        My List
                     </a>
                 </li>
 
@@ -1978,8 +1610,7 @@
 
             <button
                 class="icon-btn"
-                onclick="focusSearch()"
-                title="Search">
+                onclick="openSearch()">
 
                 <i class="fa-solid fa-search"></i>
 
@@ -1987,47 +1618,27 @@
 
 
             <button
-                class="icon-btn account"
-                title="Account">
+                class="icon-btn hide-mobile"
+                onclick="showToast('Notifications opened 🔔')">
 
-                <i class="fa-regular fa-user"></i>
+                <i class="fa-regular fa-bell"></i>
 
             </button>
 
 
             <button
-                class="icon-btn"
-                onclick="showToast('Wishlist opened ❤️')"
-                title="Wishlist">
+                class="icon-btn hide-mobile"
+                onclick="showToast('Your watchlist ❤️')">
 
                 <i class="fa-regular fa-heart"></i>
 
             </button>
 
 
-            <button
-                class="icon-btn cart-btn"
-                onclick="showToast('Your cart is ready 🛒')"
-                title="Cart">
-
-                <i class="fa-solid fa-cart-shopping"></i>
-
-                <span
-                    class="cart-count"
-                    id="cartCount">
-                    0
-                </span>
-
-            </button>
-
-
-            <button
-                class="icon-btn mobile-menu-btn"
-                onclick="showToast('Mobile menu')">
-
-                <i class="fa-solid fa-bars"></i>
-
-            </button>
+            <img
+                class="profile"
+                src="https://i.pravatar.cc/100?img=12"
+                alt="Profile">
 
         </div>
 
@@ -2043,36 +1654,68 @@
 
 <section class="hero">
 
-    <div class="container hero-grid">
+    <div class="hero-bg"></div>
 
+
+    <div class="orb orb-1"></div>
+
+    <div class="orb orb-2"></div>
+
+
+    <div class="container">
 
         <div class="hero-content">
 
-            <div class="eyebrow">
 
-                <i class="fa-solid fa-bolt"></i>
+            <div class="hero-tag">
 
-                New season • Premium collection
+                <i class="fa-solid fa-fire"></i>
+
+                #1 Trending Anime
 
             </div>
 
 
             <h1>
 
-                Shopping,
-
-                <span class="gradient-text">
-                    reimagined.
-                </span>
+                Demon Slayer:
+                <span>Infinity Castle</span>
 
             </h1>
 
 
+            <div class="anime-meta">
+
+                <span class="rating">
+                    ★ 9.8
+                </span>
+
+                <span>
+                    2026
+                </span>
+
+                <span>
+                    24 Episodes
+                </span>
+
+                <span class="age">
+                    16+
+                </span>
+
+                <span>
+                    HD
+                </span>
+
+            </div>
+
+
             <p class="hero-description">
 
-                Discover premium technology, fashion and
-                lifestyle products designed to make everyday
-                moments feel extraordinary.
+                Enter a world where demons and demon
+                slayers collide. Follow Tanjiro and his
+                allies as they face their most dangerous
+                battle yet inside the mysterious Infinity
+                Castle.
 
             </p>
 
@@ -2081,22 +1724,22 @@
 
                 <button
                     class="btn btn-primary"
-                    onclick="scrollToProducts()">
+                    onclick="watchAnime()">
 
-                    Explore Collection
+                    <i class="fa-solid fa-play"></i>
 
-                    <i class="fa-solid fa-arrow-right"></i>
+                    Watch Now
 
                 </button>
 
 
                 <button
-                    class="btn btn-outline"
-                    onclick="scrollToDeals()">
+                    class="btn btn-dark"
+                    onclick="addWatchlist()">
 
-                    <i class="fa-solid fa-fire"></i>
+                    <i class="fa-regular fa-plus"></i>
 
-                    View Hot Deals
+                    My List
 
                 </button>
 
@@ -2104,50 +1747,6 @@
 
         </div>
 
-
-
-        <!-- 3D SHOWCASE -->
-
-        <div class="hero-showcase">
-
-            <div class="glow"></div>
-
-
-            <div class="orb one"></div>
-
-            <div class="orb two"></div>
-
-
-            <div class="floating-card one">
-
-                <small>Starting from</small>
-
-                <strong>$299</strong>
-
-            </div>
-
-
-            <div class="floating-card two">
-
-                <small>Customer rating</small>
-
-                <strong>4.9 ★</strong>
-
-            </div>
-
-
-            <div
-                class="product-3d"
-                id="heroProduct">
-
-                <img
-                    src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&w=900&q=90"
-                    alt="Premium laptop">
-
-            </div>
-
-        </div>
-
     </div>
 
 </section>
@@ -2155,107 +1754,10 @@
 
 
 <!-- =========================================================
-     TRUST
+     CONTINUE WATCHING
 ========================================================= -->
 
-<section class="trust-bar">
-
-    <div class="container">
-
-        <div class="trust-grid">
-
-
-            <div class="trust-item">
-
-                <div class="trust-icon">
-                    <i class="fa-solid fa-truck-fast"></i>
-                </div>
-
-                <div>
-
-                    <strong>Free Shipping</strong>
-
-                    <small>
-                        On orders over $50
-                    </small>
-
-                </div>
-
-            </div>
-
-
-            <div class="trust-item">
-
-                <div class="trust-icon">
-                    <i class="fa-solid fa-shield-halved"></i>
-                </div>
-
-                <div>
-
-                    <strong>Secure Payment</strong>
-
-                    <small>
-                        100% protected checkout
-                    </small>
-
-                </div>
-
-            </div>
-
-
-            <div class="trust-item">
-
-                <div class="trust-icon">
-                    <i class="fa-solid fa-rotate-left"></i>
-                </div>
-
-                <div>
-
-                    <strong>Easy Returns</strong>
-
-                    <small>
-                        30-day return policy
-                    </small>
-
-                </div>
-
-            </div>
-
-
-            <div class="trust-item">
-
-                <div class="trust-icon">
-                    <i class="fa-solid fa-headset"></i>
-                </div>
-
-                <div>
-
-                    <strong>24/7 Support</strong>
-
-                    <small>
-                        We're here to help
-                    </small>
-
-                </div>
-
-            </div>
-
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- =========================================================
-     CATEGORIES
-========================================================= -->
-
-<section
-    class="section"
-    id="categories">
+<section class="section">
 
     <div class="container">
 
@@ -2264,116 +1766,146 @@
             <div>
 
                 <h2>
-                    Shop by category
+                    Continue Watching
                 </h2>
 
                 <p>
-                    Find exactly what you're looking for.
+                    Pick up where you left off.
                 </p>
 
             </div>
 
-            <a
-                href="#products"
-                class="view-all">
-
-                View all
-                <i class="fa-solid fa-arrow-right"></i>
-
+            <a href="#" class="view-all">
+                View All →
             </a>
 
         </div>
 
 
-        <div class="categories">
+        <div class="continue-grid">
 
 
             <div
-                class="category-card"
-                onclick="filterCategory('phones')">
+                class="continue-card"
+                onclick="watchAnime()">
 
-                <div class="category-icon">
-                    <i class="fa-solid fa-mobile-screen"></i>
+                <div class="continue-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=800&q=80"
+                        alt="Anime">
+
+                    <div class="progress"></div>
+
                 </div>
 
-                <h4>Smartphones</h4>
+                <div class="continue-info">
 
-                <p>128 products</p>
+                    <h3>
+                        Demon Slayer
+                    </h3>
+
+                    <p>
+                        Episode 18 • 63% watched
+                    </p>
+
+                </div>
 
             </div>
 
 
             <div
-                class="category-card"
-                onclick="filterCategory('laptops')">
+                class="continue-card"
+                onclick="watchAnime()">
 
-                <div class="category-icon">
-                    <i class="fa-solid fa-laptop"></i>
+                <div class="continue-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1613376023733-0a73315d9b06?auto=format&fit=crop&w=800&q=80"
+                        alt="Anime">
+
+                    <div
+                        class="progress"
+                        style="width:42%">
+                    </div>
+
                 </div>
 
-                <h4>Laptops</h4>
+                <div class="continue-info">
 
-                <p>86 products</p>
+                    <h3>
+                        Cyberpunk: Edgerunners
+                    </h3>
+
+                    <p>
+                        Episode 6 • 42% watched
+                    </p>
+
+                </div>
 
             </div>
 
 
             <div
-                class="category-card"
-                onclick="filterCategory('fashion')">
+                class="continue-card"
+                onclick="watchAnime()">
 
-                <div class="category-icon">
-                    <i class="fa-solid fa-shirt"></i>
+                <div class="continue-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=800&q=80"
+                        alt="Anime">
+
+                    <div
+                        class="progress"
+                        style="width:78%">
+                    </div>
+
                 </div>
 
-                <h4>Fashion</h4>
+                <div class="continue-info">
 
-                <p>245 products</p>
+                    <h3>
+                        Jujutsu Kaisen
+                    </h3>
+
+                    <p>
+                        Episode 31 • 78% watched
+                    </p>
+
+                </div>
 
             </div>
 
 
             <div
-                class="category-card"
-                onclick="filterCategory('audio')">
+                class="continue-card"
+                onclick="watchAnime()">
 
-                <div class="category-icon">
-                    <i class="fa-solid fa-headphones"></i>
+                <div class="continue-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1560972550-aba3456b5564?auto=format&fit=crop&w=800&q=80"
+                        alt="Anime">
+
+                    <div
+                        class="progress"
+                        style="width:25%">
+                    </div>
+
                 </div>
 
-                <h4>Audio</h4>
+                <div class="continue-info">
 
-                <p>74 products</p>
+                    <h3>
+                        One Piece
+                    </h3>
 
-            </div>
+                    <p>
+                        Episode 1121 • 25% watched
+                    </p>
 
-
-            <div
-                class="category-card"
-                onclick="filterCategory('shoes')">
-
-                <div class="category-icon">
-                    <i class="fa-solid fa-shoe-prints"></i>
                 </div>
-
-                <h4>Footwear</h4>
-
-                <p>154 products</p>
-
-            </div>
-
-
-            <div
-                class="category-card"
-                onclick="filterCategory('accessories')">
-
-                <div class="category-icon">
-                    <i class="fa-solid fa-watch"></i>
-                </div>
-
-                <h4>Accessories</h4>
-
-                <p>93 products</p>
 
             </div>
 
@@ -2387,13 +1919,12 @@
 
 
 <!-- =========================================================
-     PRODUCTS
+     POPULAR
 ========================================================= -->
 
 <section
     class="section"
-    id="products"
-    style="padding-top:20px">
+    id="popular">
 
     <div class="container">
 
@@ -2403,326 +1934,330 @@
             <div>
 
                 <h2>
-                    Trending products
+                    Popular Anime
                 </h2>
 
                 <p>
-                    Handpicked products people love right now.
+                    What everyone is watching right now.
                 </p>
 
             </div>
 
-        </div>
-
-
-        <div class="filters">
-
-            <button
-                class="filter active"
-                data-filter="all"
-                onclick="filterProducts('all', this)">
-                All
-            </button>
-
-            <button
-                class="filter"
-                data-filter="phones"
-                onclick="filterProducts('phones', this)">
-                Smartphones
-            </button>
-
-            <button
-                class="filter"
-                data-filter="laptops"
-                onclick="filterProducts('laptops', this)">
-                Laptops
-            </button>
-
-            <button
-                class="filter"
-                data-filter="audio"
-                onclick="filterProducts('audio', this)">
-                Audio
-            </button>
-
-            <button
-                class="filter"
-                data-filter="accessories"
-                onclick="filterProducts('accessories', this)">
-                Accessories
-            </button>
+            <a href="#" class="view-all">
+                See More →
+            </a>
 
         </div>
 
 
-        <div
-            class="products"
-            id="productGrid">
+        <div class="anime-grid">
 
 
-            <!-- PRODUCT 1 -->
+            <!-- 1 -->
 
-            <div
-                class="product-card"
-                data-category="phones">
+            <div class="anime-card">
 
-                <div class="product-image">
+                <div class="anime-poster">
 
-                    <span class="badge">
-                        NEW
-                    </span>
-
-                    <button
-                        class="wishlist"
-                        onclick="toggleWishlist(this)">
-
-                        <i class="fa-regular fa-heart"></i>
-
-                    </button>
-
-                    <img
-                        src="https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?auto=format&fit=crop&w=700&q=85"
-                        alt="Smartphone">
-
-                </div>
-
-
-                <div class="product-info">
-
-                    <div class="product-category">
-                        Smartphones
-                    </div>
-
-                    <h3 class="product-title">
-                        Premium Smartphone Pro
-                    </h3>
-
-                    <div class="rating">
-                        ★★★★★
-                        <span>(128)</span>
-                    </div>
-
-
-                    <div class="product-bottom">
-
-                        <div class="price">
-                            $999
-                            <span class="old-price">
-                                $1,099
-                            </span>
-                        </div>
-
-                        <button
-                            class="add-btn"
-                            onclick="addToCart('Premium Smartphone Pro')">
-
-                            <i class="fa-solid fa-plus"></i>
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- PRODUCT 2 -->
-
-            <div
-                class="product-card"
-                data-category="laptops">
-
-                <div class="product-image">
-
-                    <span class="badge">
-                        BESTSELLER
-                    </span>
-
-                    <button
-                        class="wishlist"
-                        onclick="toggleWishlist(this)">
-
-                        <i class="fa-regular fa-heart"></i>
-
-                    </button>
-
-                    <img
-                        src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=700&q=85"
-                        alt="Laptop">
-
-                </div>
-
-
-                <div class="product-info">
-
-                    <div class="product-category">
-                        Laptops
-                    </div>
-
-                    <h3 class="product-title">
-                        UltraBook Air 14
-                    </h3>
-
-                    <div class="rating">
-                        ★★★★★
-                        <span>(86)</span>
-                    </div>
-
-
-                    <div class="product-bottom">
-
-                        <div class="price">
-                            $1,499
-                            <span class="old-price">
-                                $1,699
-                            </span>
-                        </div>
-
-                        <button
-                            class="add-btn"
-                            onclick="addToCart('UltraBook Air 14')">
-
-                            <i class="fa-solid fa-plus"></i>
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- PRODUCT 3 -->
-
-            <div
-                class="product-card"
-                data-category="accessories">
-
-                <div class="product-image">
-
-                    <span class="badge">
-                        -25%
-                    </span>
-
-                    <button
-                        class="wishlist"
-                        onclick="toggleWishlist(this)">
-
-                        <i class="fa-regular fa-heart"></i>
-
-                    </button>
-
-                    <img
-                        src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=700&q=85"
-                        alt="Smart watch">
-
-                </div>
-
-
-                <div class="product-info">
-
-                    <div class="product-category">
-                        Accessories
-                    </div>
-
-                    <h3 class="product-title">
-                        SmartWatch Series X
-                    </h3>
-
-                    <div class="rating">
-                        ★★★★★
-                        <span>(214)</span>
-                    </div>
-
-
-                    <div class="product-bottom">
-
-                        <div class="price">
-                            $299
-                            <span class="old-price">
-                                $399
-                            </span>
-                        </div>
-
-                        <button
-                            class="add-btn"
-                            onclick="addToCart('SmartWatch Series X')">
-
-                            <i class="fa-solid fa-plus"></i>
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- PRODUCT 4 -->
-
-            <div
-                class="product-card"
-                data-category="audio">
-
-                <div class="product-image">
-
-                    <span class="badge">
+                    <span class="card-badge hot">
                         HOT
                     </span>
 
-                    <button
-                        class="wishlist"
-                        onclick="toggleWishlist(this)">
-
-                        <i class="fa-regular fa-heart"></i>
-
-                    </button>
-
                     <img
-                        src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=700&q=85"
-                        alt="Headphones">
+                        src="https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=700&q=85"
+                        alt="Demon Slayer">
+
+                    <div class="poster-overlay">
+
+                        <div
+                            class="play-circle"
+                            onclick="watchAnime()">
+
+                            <i class="fa-solid fa-play"></i>
+
+                        </div>
+
+                    </div>
 
                 </div>
 
 
-                <div class="product-info">
+                <div class="card-info">
 
-                    <div class="product-category">
-                        Audio
-                    </div>
-
-                    <h3 class="product-title">
-                        NoiseCancel Pro Headphones
+                    <h3>
+                        Demon Slayer
                     </h3>
 
-                    <div class="rating">
-                        ★★★★★
-                        <span>(176)</span>
+                    <div class="card-meta">
+
+                        <span>
+                            24 Episodes
+                        </span>
+
+                        <span class="card-rating">
+                            ★ 9.8
+                        </span>
+
                     </div>
 
+                </div>
 
-                    <div class="product-bottom">
+            </div>
 
-                        <div class="price">
-                            $249
-                            <span class="old-price">
-                                $299
-                            </span>
+
+
+            <!-- 2 -->
+
+            <div class="anime-card">
+
+                <div class="anime-poster">
+
+                    <span class="card-badge hot">
+                        TRENDING
+                    </span>
+
+                    <img
+                        src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=700&q=85"
+                        alt="Jujutsu Kaisen">
+
+                    <div class="poster-overlay">
+
+                        <div
+                            class="play-circle"
+                            onclick="watchAnime()">
+
+                            <i class="fa-solid fa-play"></i>
+
                         </div>
 
-                        <button
-                            class="add-btn"
-                            onclick="addToCart('NoiseCancel Pro Headphones')">
+                    </div>
 
-                            <i class="fa-solid fa-plus"></i>
+                </div>
 
-                        </button>
+
+                <div class="card-info">
+
+                    <h3>
+                        Jujutsu Kaisen
+                    </h3>
+
+                    <div class="card-meta">
+
+                        <span>
+                            47 Episodes
+                        </span>
+
+                        <span class="card-rating">
+                            ★ 9.6
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- 3 -->
+
+            <div class="anime-card">
+
+                <div class="anime-poster">
+
+                    <span class="card-badge new">
+                        NEW
+                    </span>
+
+                    <img
+                        src="https://images.unsplash.com/photo-1613376023733-0a73315d9b06?auto=format&fit=crop&w=700&q=85"
+                        alt="Cyberpunk">
+
+                    <div class="poster-overlay">
+
+                        <div
+                            class="play-circle"
+                            onclick="watchAnime()">
+
+                            <i class="fa-solid fa-play"></i>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card-info">
+
+                    <h3>
+                        Cyberpunk: Edgerunners
+                    </h3>
+
+                    <div class="card-meta">
+
+                        <span>
+                            10 Episodes
+                        </span>
+
+                        <span class="card-rating">
+                            ★ 9.4
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- 4 -->
+
+            <div class="anime-card">
+
+                <div class="anime-poster">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1560972550-aba3456b5564?auto=format&fit=crop&w=700&q=85"
+                        alt="One Piece">
+
+                    <div class="poster-overlay">
+
+                        <div
+                            class="play-circle"
+                            onclick="watchAnime()">
+
+                            <i class="fa-solid fa-play"></i>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card-info">
+
+                    <h3>
+                        One Piece
+                    </h3>
+
+                    <div class="card-meta">
+
+                        <span>
+                            1121+ Episodes
+                        </span>
+
+                        <span class="card-rating">
+                            ★ 9.5
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- 5 -->
+
+            <div class="anime-card">
+
+                <div class="anime-poster">
+
+                    <span class="card-badge hot">
+                        TOP
+                    </span>
+
+                    <img
+                        src="https://images.unsplash.com/photo-1606112219348-204d7d8b94ee?auto=format&fit=crop&w=700&q=85"
+                        alt="Attack on Titan">
+
+                    <div class="poster-overlay">
+
+                        <div
+                            class="play-circle"
+                            onclick="watchAnime()">
+
+                            <i class="fa-solid fa-play"></i>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card-info">
+
+                    <h3>
+                        Attack on Titan
+                    </h3>
+
+                    <div class="card-meta">
+
+                        <span>
+                            89 Episodes
+                        </span>
+
+                        <span class="card-rating">
+                            ★ 9.9
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- 6 -->
+
+            <div class="anime-card">
+
+                <div class="anime-poster">
+
+                    <span class="card-badge new">
+                        NEW
+                    </span>
+
+                    <img
+                        src="https://images.unsplash.com/photo-1578632292335-df3abbb0d586?auto=format&fit=crop&w=700&q=85"
+                        alt="Solo Leveling">
+
+                    <div class="poster-overlay">
+
+                        <div
+                            class="play-circle"
+                            onclick="watchAnime()">
+
+                            <i class="fa-solid fa-play"></i>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card-info">
+
+                    <h3>
+                        Solo Leveling
+                    </h3>
+
+                    <div class="card-meta">
+
+                        <span>
+                            25 Episodes
+                        </span>
+
+                        <span class="card-rating">
+                            ★ 9.7
+                        </span>
 
                     </div>
 
@@ -2740,110 +2275,469 @@
 
 
 <!-- =========================================================
-     DEAL
+     LATEST RELEASES
 ========================================================= -->
 
 <section
     class="section"
-    id="deals">
+    id="latest">
 
     <div class="container">
 
-        <div class="deal">
+
+        <div class="section-heading">
+
+            <div>
+
+                <h2>
+                    Latest Episodes
+                </h2>
+
+                <p>
+                    Fresh episodes added today.
+                </p>
+
+            </div>
+
+            <a href="#" class="view-all">
+                View Schedule →
+            </a>
+
+        </div>
 
 
-            <div class="deal-content">
+        <div class="anime-grid">
 
-                <div class="deal-label">
 
-                    Limited time offer
+            <div class="anime-card">
+
+                <div class="anime-poster">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=700&q=80"
+                        alt="Anime">
+
+                    <span class="card-badge new">
+                        EP 24
+                    </span>
+
+                    <div class="poster-overlay">
+
+                        <div
+                            class="play-circle"
+                            onclick="watchAnime()">
+
+                            <i class="fa-solid fa-play"></i>
+
+                        </div>
+
+                    </div>
 
                 </div>
 
+                <div class="card-info">
+
+                    <h3>
+                        Demon Slayer
+                    </h3>
+
+                    <div class="card-meta">
+                        <span>
+                            Today
+                        </span>
+
+                        <span class="card-rating">
+                            ★ 9.8
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="anime-card">
+
+                <div class="anime-poster">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=700&q=80"
+                        alt="Anime">
+
+                    <span class="card-badge new">
+                        EP 31
+                    </span>
+
+                    <div class="poster-overlay">
+
+                        <div
+                            class="play-circle"
+                            onclick="watchAnime()">
+
+                            <i class="fa-solid fa-play"></i>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="card-info">
+
+                    <h3>
+                        Jujutsu Kaisen
+                    </h3>
+
+                    <div class="card-meta">
+                        <span>
+                            Today
+                        </span>
+
+                        <span class="card-rating">
+                            ★ 9.6
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="anime-card">
+
+                <div class="anime-poster">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1560972550-aba3456b5564?auto=format&fit=crop&w=700&q=80"
+                        alt="Anime">
+
+                    <span class="card-badge new">
+                        EP 1121
+                    </span>
+
+                    <div class="poster-overlay">
+
+                        <div
+                            class="play-circle"
+                            onclick="watchAnime()">
+
+                            <i class="fa-solid fa-play"></i>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="card-info">
+
+                    <h3>
+                        One Piece
+                    </h3>
+
+                    <div class="card-meta">
+                        <span>
+                            Today
+                        </span>
+
+                        <span class="card-rating">
+                            ★ 9.5
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="anime-card">
+
+                <div class="anime-poster">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1613376023733-0a73315d9b06?auto=format&fit=crop&w=700&q=80"
+                        alt="Anime">
+
+                    <span class="card-badge new">
+                        EP 06
+                    </span>
+
+                    <div class="poster-overlay">
+
+                        <div
+                            class="play-circle"
+                            onclick="watchAnime()">
+
+                            <i class="fa-solid fa-play"></i>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="card-info">
+
+                    <h3>
+                        Cyberpunk
+                    </h3>
+
+                    <div class="card-meta">
+                        <span>
+                            Today
+                        </span>
+
+                        <span class="card-rating">
+                            ★ 9.4
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="anime-card">
+
+                <div class="anime-poster">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1606112219348-204d7d8b94ee?auto=format&fit=crop&w=700&q=80"
+                        alt="Anime">
+
+                    <span class="card-badge new">
+                        EP 89
+                    </span>
+
+                    <div class="poster-overlay">
+
+                        <div
+                            class="play-circle"
+                            onclick="watchAnime()">
+
+                            <i class="fa-solid fa-play"></i>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="card-info">
+
+                    <h3>
+                        Attack on Titan
+                    </h3>
+
+                    <div class="card-meta">
+                        <span>
+                            Today
+                        </span>
+
+                        <span class="card-rating">
+                            ★ 9.9
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="anime-card">
+
+                <div class="anime-poster">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1578632292335-df3abbb0d586?auto=format&fit=crop&w=700&q=80"
+                        alt="Anime">
+
+                    <span class="card-badge new">
+                        EP 25
+                    </span>
+
+                    <div class="poster-overlay">
+
+                        <div
+                            class="play-circle"
+                            onclick="watchAnime()">
+
+                            <i class="fa-solid fa-play"></i>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="card-info">
+
+                    <h3>
+                        Solo Leveling
+                    </h3>
+
+                    <div class="card-meta">
+                        <span>
+                            Today
+                        </span>
+
+                        <span class="card-rating">
+                            ★ 9.7
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     GENRES
+========================================================= -->
+
+<section
+    class="section"
+    id="genres">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <div>
 
                 <h2>
-                    Weekend Flash Sale
+                    Explore Genres
+                </h2>
+
+                <p>
+                    Find your next favorite anime.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="genre-grid">
+
+            <div class="genre">
+                Action
+            </div>
+
+            <div class="genre">
+                Adventure
+            </div>
+
+            <div class="genre">
+                Comedy
+            </div>
+
+            <div class="genre">
+                Romance
+            </div>
+
+            <div class="genre">
+                Fantasy
+            </div>
+
+            <div class="genre">
+                Horror
+            </div>
+
+            <div class="genre">
+                Mystery
+            </div>
+
+            <div class="genre">
+                Sci-Fi
+            </div>
+
+            <div class="genre">
+                Sports
+            </div>
+
+            <div class="genre">
+                Isekai
+            </div>
+
+            <div class="genre">
+                Shounen
+            </div>
+
+            <div class="genre">
+                Slice of Life
+            </div>
+
+            <div class="genre">
+                Supernatural
+            </div>
+
+            <div class="genre">
+                Psychological
+            </div>
+
+            <div class="genre">
+                Historical
+            </div>
+
+            <div class="genre">
+                Music
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     FEATURE
+========================================================= -->
+
+<section class="section">
+
+    <div class="container">
+
+        <div class="feature-banner">
+
+
+            <div class="feature-content">
+
+                <small>
+                    AnimeVerse Original
+                </small>
+
+
+                <h2>
+                    Your next obsession
+                    starts here.
                 </h2>
 
 
                 <p>
 
-                    Upgrade your setup with premium
-                    technology and save big before
-                    this exclusive offer disappears.
+                    Discover thousands of anime titles,
+                    follow your favorite characters and
+                    never miss a new episode.
 
                 </p>
 
 
-                <div class="timer">
-
-                    <div class="time-box">
-
-                        <div>
-                            <strong id="days">
-                                00
-                            </strong>
-
-                            <small>
-                                DAYS
-                            </small>
-                        </div>
-
-                    </div>
-
-
-                    <div class="time-box">
-
-                        <div>
-                            <strong id="hours">
-                                00
-                            </strong>
-
-                            <small>
-                                HOURS
-                            </small>
-                        </div>
-
-                    </div>
-
-
-                    <div class="time-box">
-
-                        <div>
-                            <strong id="minutes">
-                                00
-                            </strong>
-
-                            <small>
-                                MIN
-                            </small>
-                        </div>
-
-                    </div>
-
-
-                    <div class="time-box">
-
-                        <div>
-                            <strong id="seconds">
-                                00
-                            </strong>
-
-                            <small>
-                                SEC
-                            </small>
-                        </div>
-
-                    </div>
-
-                </div>
-
-
                 <button
                     class="btn btn-primary"
-                    onclick="addToCart('Flash Sale Product')">
+                    onclick="showToast('Explore AnimeVerse Originals ✨')">
 
-                    Shop the deal
+                    Explore Originals
 
                     <i class="fa-solid fa-arrow-right"></i>
 
@@ -2851,296 +2745,6 @@
 
             </div>
 
-
-            <div class="deal-product">
-
-                <img
-                    src="https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?auto=format&fit=crop&w=800&q=85"
-                    alt="Premium headphones">
-
-            </div>
-
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- =========================================================
-     FEATURES
-========================================================= -->
-
-<section class="section">
-
-    <div class="container">
-
-        <div class="section-heading">
-
-            <div>
-
-                <h2>
-                    Why shop with us?
-                </h2>
-
-                <p>
-                    Everything designed around you.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="features">
-
-
-            <div class="feature">
-
-                <div class="feature-icon">
-                    <i class="fa-solid fa-wand-magic-sparkles"></i>
-                </div>
-
-                <h3>
-                    Curated Products
-                </h3>
-
-                <p>
-                    Every product is carefully selected
-                    for quality, style and value.
-                </p>
-
-            </div>
-
-
-            <div class="feature">
-
-                <div class="feature-icon">
-                    <i class="fa-solid fa-bolt"></i>
-                </div>
-
-                <h3>
-                    Lightning Fast Delivery
-                </h3>
-
-                <p>
-                    Fast, reliable delivery with real-time
-                    order tracking from checkout to doorstep.
-                </p>
-
-            </div>
-
-
-            <div class="feature">
-
-                <div class="feature-icon">
-                    <i class="fa-solid fa-face-smile"></i>
-                </div>
-
-                <h3>
-                    Customer First
-                </h3>
-
-                <p>
-                    Friendly support and simple returns
-                    whenever you need us.
-                </p>
-
-            </div>
-
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- =========================================================
-     REVIEWS
-========================================================= -->
-
-<section
-    class="section"
-    id="reviews">
-
-    <div class="container">
-
-        <div class="section-heading">
-
-            <div>
-
-                <h2>
-                    Loved by shoppers
-                </h2>
-
-                <p>
-                    Real experiences from our customers.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="reviews">
-
-
-            <div class="review">
-
-                <div class="review-stars">
-                    ★★★★★
-                </div>
-
-                <p>
-                    "The website is incredibly easy to use
-                    and my order arrived much faster than
-                    expected. Absolutely loved it!"
-                </p>
-
-                <div class="review-user">
-
-                    <img
-                        src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80"
-                        alt="Customer">
-
-                    <div>
-
-                        <strong>
-                            Ava Martin
-                        </strong>
-
-                        <small>
-                            Verified buyer
-                        </small>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="review">
-
-                <div class="review-stars">
-                    ★★★★★
-                </div>
-
-                <p>
-                    "Beautiful shopping experience.
-                    The product quality was excellent and
-                    checkout was super smooth."
-                </p>
-
-                <div class="review-user">
-
-                    <img
-                        src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80"
-                        alt="Customer">
-
-                    <div>
-
-                        <strong>
-                            Michael Lee
-                        </strong>
-
-                        <small>
-                            Frequent buyer
-                        </small>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="review">
-
-                <div class="review-stars">
-                    ★★★★★
-                </div>
-
-                <p>
-                    "I love how premium everything feels.
-                    The product presentation and animations
-                    make the site really enjoyable."
-                </p>
-
-                <div class="review-user">
-
-                    <img
-                        src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80"
-                        alt="Customer">
-
-                    <div>
-
-                        <strong>
-                            Sophia Williams
-                        </strong>
-
-                        <small>
-                            Verified buyer
-                        </small>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- =========================================================
-     NEWSLETTER
-========================================================= -->
-
-<section class="section">
-
-    <div class="container">
-
-        <div class="newsletter">
-
-            <div class="newsletter-content">
-
-                <h2>
-                    Get the good stuff first.
-                </h2>
-
-                <p>
-                    New products, exclusive deals and
-                    special offers delivered to your inbox.
-                </p>
-
-
-                <form
-                    class="newsletter-form"
-                    onsubmit="subscribe(event)">
-
-                    <input
-                        type="email"
-                        id="email"
-                        placeholder="Enter your email address"
-                        required>
-
-                    <button type="submit">
-                        Subscribe
-                    </button>
-
-                </form>
-
-            </div>
 
         </div>
 
@@ -3158,6 +2762,7 @@
 
     <div class="container">
 
+
         <div class="footer-grid">
 
 
@@ -3166,19 +2771,21 @@
                 <a href="#" class="logo">
 
                     <div class="logo-icon">
-                        <i class="fa-solid fa-bag-shopping"></i>
+
+                        <i class="fa-solid fa-play"></i>
+
                     </div>
 
-                    Nexus<span>Shop</span>
+                    Anime<span>Verse</span>
 
                 </a>
 
 
                 <p>
 
-                    A premium shopping experience built
-                    around great products, beautiful design
-                    and happy customers.
+                    Your home for anime.
+                    Discover new worlds, unforgettable
+                    characters and stories worth watching.
 
                 </p>
 
@@ -3186,15 +2793,15 @@
                 <div class="socials">
 
                     <a href="#">
-                        <i class="fa-brands fa-facebook-f"></i>
-                    </a>
-
-                    <a href="#">
-                        <i class="fa-brands fa-instagram"></i>
+                        <i class="fa-brands fa-discord"></i>
                     </a>
 
                     <a href="#">
                         <i class="fa-brands fa-x-twitter"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="fa-brands fa-instagram"></i>
                     </a>
 
                     <a href="#">
@@ -3209,32 +2816,32 @@
             <div class="footer">
 
                 <h4>
-                    Shop
+                    Browse
                 </h4>
 
                 <ul>
 
                     <li>
                         <a href="#">
-                            New Arrivals
+                            Popular
                         </a>
                     </li>
 
                     <li>
                         <a href="#">
-                            Best Sellers
+                            Latest Episodes
                         </a>
                     </li>
 
                     <li>
                         <a href="#">
-                            Deals
+                            Genres
                         </a>
                     </li>
 
                     <li>
                         <a href="#">
-                            Categories
+                            Release Calendar
                         </a>
                     </li>
 
@@ -3246,7 +2853,44 @@
             <div class="footer">
 
                 <h4>
-                    Help
+                    Account
+                </h4>
+
+                <ul>
+
+                    <li>
+                        <a href="#">
+                            My Profile
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            Watchlist
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            Watch History
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            Settings
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <div class="footer">
+
+                <h4>
+                    Support
                 </h4>
 
                 <ul>
@@ -3259,44 +2903,7 @@
 
                     <li>
                         <a href="#">
-                            Shipping
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#">
-                            Returns
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#">
-                            Contact
-                        </a>
-                    </li>
-
-                </ul>
-
-            </div>
-
-
-            <div class="footer">
-
-                <h4>
-                    Company
-                </h4>
-
-                <ul>
-
-                    <li>
-                        <a href="#">
-                            About
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#">
-                            Careers
+                            Contact Us
                         </a>
                     </li>
 
@@ -3322,8 +2929,8 @@
 
         <div class="copyright">
 
-            © <span id="year"></span>
-            NexusShop. All rights reserved.
+            © 2026 AnimeVerse.
+            All rights reserved.
 
         </div>
 
@@ -3333,7 +2940,34 @@
 
 
 
-<!-- TOAST -->
+<!-- =========================================================
+     SEARCH MODAL
+========================================================= -->
+
+<div
+    class="search-modal"
+    id="searchModal"
+    onclick="closeSearch(event)">
+
+    <div
+        class="search-box"
+        onclick="event.stopPropagation()">
+
+        <input
+            type="text"
+            placeholder="Search anime, characters, genres..."
+            autofocus
+            id="searchInput">
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     TOAST
+========================================================= -->
 
 <div
     class="toast"
@@ -3344,43 +2978,29 @@
 
 <script>
 
-    /* =====================================================
-       CART
-    ===================================================== */
 
-    let cartCount = 0;
-
-
-    function addToCart(productName) {
-
-        cartCount++;
-
-        document.getElementById("cartCount")
-            .textContent = cartCount;
-
-        showToast(
-            productName + " added to cart 🛒"
-        );
-    }
-
-
-
-    /* =====================================================
+    /* ==========================================
        TOAST
-    ===================================================== */
+    ========================================== */
 
     let toastTimer;
+
 
     function showToast(message) {
 
         const toast =
             document.getElementById("toast");
 
-        toast.textContent = message;
+
+        toast.textContent =
+            message;
+
 
         toast.classList.add("show");
 
+
         clearTimeout(toastTimer);
+
 
         toastTimer =
             setTimeout(() => {
@@ -3388,462 +3008,188 @@
                 toast.classList.remove("show");
 
             }, 2500);
+
     }
 
 
 
-    /* =====================================================
-       WISHLIST
-    ===================================================== */
-
-    function toggleWishlist(button) {
-
-        button.classList.toggle("active");
-
-        const icon =
-            button.querySelector("i");
-
-        if (
-            button.classList.contains("active")
-        ) {
-
-            icon.classList.remove(
-                "fa-regular"
-            );
-
-            icon.classList.add(
-                "fa-solid"
-            );
-
-            showToast(
-                "Added to wishlist ❤️"
-            );
-
-        } else {
-
-            icon.classList.remove(
-                "fa-solid"
-            );
-
-            icon.classList.add(
-                "fa-regular"
-            );
-
-            showToast(
-                "Removed from wishlist"
-            );
-        }
-    }
-
-
-
-    /* =====================================================
-       PRODUCT FILTER
-    ===================================================== */
-
-    function filterProducts(
-        category,
-        button
-    ) {
-
-        document
-            .querySelectorAll(".filter")
-            .forEach(btn =>
-                btn.classList.remove("active")
-            );
-
-        if (button) {
-            button.classList.add("active");
-        }
-
-
-        document
-            .querySelectorAll(".product-card")
-            .forEach(card => {
-
-                const cardCategory =
-                    card.dataset.category;
-
-                if (
-                    category === "all" ||
-                    cardCategory === category
-                ) {
-
-                    card.style.display =
-                        "block";
-
-                } else {
-
-                    card.style.display =
-                        "none";
-                }
-
-            });
-    }
-
-
-
-    function filterCategory(category) {
-
-        document
-            .getElementById("products")
-            .scrollIntoView({
-                behavior: "smooth"
-            });
-
-        const filter =
-            document.querySelector(
-                `.filter[data-filter="${category}"]`
-            );
-
-        if (filter) {
-
-            filterProducts(
-                category,
-                filter
-            );
-
-        } else {
-
-            filterProducts(
-                "all",
-                document.querySelector(
-                    '.filter[data-filter="all"]'
-                )
-            );
-        }
-    }
-
-
-
-    /* =====================================================
-       SCROLL
-    ===================================================== */
-
-    function scrollToProducts() {
-
-        document
-            .getElementById("products")
-            .scrollIntoView({
-                behavior: "smooth"
-            });
-    }
-
-
-    function scrollToDeals() {
-
-        document
-            .getElementById("deals")
-            .scrollIntoView({
-                behavior: "smooth"
-            });
-    }
-
-
-
-    /* =====================================================
-       SEARCH
-    ===================================================== */
-
-    function focusSearch() {
-
-        const query =
-            prompt(
-                "What are you looking for?"
-            );
-
-        if (!query) return;
-
-        const cards =
-            document.querySelectorAll(
-                ".product-card"
-            );
-
-        let found = false;
-
-        cards.forEach(card => {
-
-            const title =
-                card
-                    .querySelector(
-                        ".product-title"
-                    )
-                    .textContent
-                    .toLowerCase();
-
-            if (
-                title.includes(
-                    query.toLowerCase()
-                )
-            ) {
-
-                card.style.display =
-                    "block";
-
-                found = true;
-
-            } else {
-
-                card.style.display =
-                    "none";
-            }
-
-        });
-
-        if (!found) {
-
-            showToast(
-                "No products found for " +
-                query
-            );
-
-        } else {
-
-            scrollToProducts();
-        }
-    }
-
-
-
-    /* =====================================================
-       NEWSLETTER
-    ===================================================== */
-
-    function subscribe(event) {
-
-        event.preventDefault();
-
-        const email =
-            document.getElementById(
-                "email"
-            ).value;
+    /* ==========================================
+       WATCH
+    ========================================== */
+
+    function watchAnime() {
 
         showToast(
-            "Thanks for subscribing! 🎉"
+            "Starting episode... ▶️"
         );
 
-        event.target.reset();
     }
 
 
 
-    /* =====================================================
-       COUNTDOWN
-    ===================================================== */
+    /* ==========================================
+       WATCHLIST
+    ========================================== */
 
-    const saleEnd =
-        new Date(
-            Date.now() +
-            2 * 24 * 60 * 60 * 1000
+    function addWatchlist() {
+
+        showToast(
+            "Added to your watchlist ❤️"
         );
 
-
-    function updateCountdown() {
-
-        const now =
-            new Date();
-
-        const difference =
-            saleEnd - now;
-
-        if (difference <= 0) {
-            return;
-        }
-
-
-        const days =
-            Math.floor(
-                difference /
-                (1000 * 60 * 60 * 24)
-            );
-
-        const hours =
-            Math.floor(
-                (difference /
-                    (1000 * 60 * 60))
-                % 24
-            );
-
-        const minutes =
-            Math.floor(
-                (difference /
-                    (1000 * 60))
-                % 60
-            );
-
-        const seconds =
-            Math.floor(
-                (difference / 1000)
-                % 60
-            );
-
-
-        document.getElementById(
-            "days"
-        ).textContent =
-            String(days).padStart(2,"0");
-
-
-        document.getElementById(
-            "hours"
-        ).textContent =
-            String(hours).padStart(2,"0");
-
-
-        document.getElementById(
-            "minutes"
-        ).textContent =
-            String(minutes).padStart(2,"0");
-
-
-        document.getElementById(
-            "seconds"
-        ).textContent =
-            String(seconds).padStart(2,"0");
     }
 
 
-    updateCountdown();
 
-    setInterval(
-        updateCountdown,
-        1000
-    );
+    /* ==========================================
+       SEARCH
+    ========================================== */
 
+    function openSearch() {
 
-
-    /* =====================================================
-       HERO 3D MOUSE EFFECT
-    ===================================================== */
-
-    const hero =
-        document.querySelector(
-            ".hero"
-        );
-
-    const heroProduct =
-        document.getElementById(
-            "heroProduct"
-        );
+        document
+            .getElementById("searchModal")
+            .classList.add("show");
 
 
-    hero.addEventListener(
-        "mousemove",
-        function(event) {
+        setTimeout(() => {
 
-            const rect =
-                hero.getBoundingClientRect();
+            document
+                .getElementById("searchInput")
+                .focus();
 
-            const x =
-                event.clientX -
-                rect.left;
+        },100);
 
-            const y =
-                event.clientY -
-                rect.top;
-
-            const rotateY =
-                (x / rect.width - .5)
-                * 20;
-
-            const rotateX =
-                (y / rect.height - .5)
-                * -15;
+    }
 
 
-            heroProduct.style.transform =
-                `
-                translate(-50%,-50%)
-                rotateY(${rotateY}deg)
-                rotateX(${rotateX}deg)
-                rotateZ(-3deg)
-                scale(1.04)
-                `;
+    function closeSearch(event) {
+
+        if (
+            event.target.id ===
+            "searchModal"
+        ) {
+
+            document
+                .getElementById("searchModal")
+                .classList.remove("show");
+
         }
-    );
 
+    }
 
-    hero.addEventListener(
-        "mouseleave",
-        function() {
-
-            heroProduct.style.transform =
-                `
-                translate(-50%,-50%)
-                rotateY(-14deg)
-                rotateX(8deg)
-                rotateZ(-3deg)
-                `;
-        }
-    );
-
-
-
-    /* =====================================================
-       PRODUCT 3D TILT
-    ===================================================== */
 
     document
-        .querySelectorAll(".product-card")
+        .getElementById("searchInput")
+        .addEventListener(
+            "keydown",
+            function(event) {
+
+                if (
+                    event.key ===
+                    "Enter"
+                ) {
+
+                    const value =
+                        this.value.trim();
+
+
+                    if (value) {
+
+                        showToast(
+                            "Searching for: " +
+                            value
+                        );
+
+                    }
+
+                }
+
+
+                if (
+                    event.key ===
+                    "Escape"
+                ) {
+
+                    document
+                        .getElementById(
+                            "searchModal"
+                        )
+                        .classList.remove(
+                            "show"
+                        );
+
+                }
+
+            }
+        );
+
+
+    /* ==========================================
+       3D MOUSE EFFECT
+    ========================================== */
+
+    document
+        .querySelectorAll(".anime-card")
         .forEach(card => {
+
 
             card.addEventListener(
                 "mousemove",
-                event => {
+                function(event) {
 
                     const rect =
-                        card.getBoundingClientRect();
+                        this.getBoundingClientRect();
+
 
                     const x =
                         event.clientX -
                         rect.left;
 
+
                     const y =
                         event.clientY -
                         rect.top;
 
+
                     const rotateY =
-                        (x / rect.width - .5)
+                        ((x / rect.width) - .5)
                         * 8;
 
+
                     const rotateX =
-                        (y / rect.height - .5)
+                        ((y / rect.height) - .5)
                         * -8;
 
 
-                    card.style.transform =
+                    this.style.transform =
                         `
-                        translateY(-10px)
+                        translateY(-8px)
                         rotateX(${rotateX}deg)
                         rotateY(${rotateY}deg)
+                        scale(1.02)
                         `;
+
                 }
             );
 
 
             card.addEventListener(
                 "mouseleave",
-                () => {
+                function() {
 
-                    card.style.transform =
+                    this.style.transform =
                         "";
+
                 }
             );
 
         });
 
 
-
-    /* =====================================================
-       YEAR
-    ===================================================== */
-
-    document.getElementById(
-        "year"
-    ).textContent =
-        new Date().getFullYear();
-
 </script>
 
+
 </body>
+
 </html>
